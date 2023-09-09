@@ -11,7 +11,7 @@ jobs:
 
     - name: Setup mkosi
       uses: systemd/mkosi@v16
-  
+
     - name: Summary
       run: |
         sudo mkosi summary
@@ -24,4 +24,4 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: fedora-image
-        path: image.raw
+        path: ./
