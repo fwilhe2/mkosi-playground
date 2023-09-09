@@ -9,24 +9,28 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - name: Install mkosi
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y bubblewrap nextgen-yum4
-        python3 -m pip install --upgrade setuptools wheel pip
-        python3 -m venv testvenv
-        testvenv/bin/python3 -m pip install --upgrade setuptools wheel pip
-        testvenv/bin/python3 -m pip install git+https://github.com/systemd/mkosi.git@v12
+    - name: setup-mkosi
+      uses: systemd/mkosi@v16
+  
+
+    # - name: Install mkosi
+    #   run: |
+    #     sudo apt-get update
+    #     sudo apt-get install -y bubblewrap nextgen-yum4
+    #     python3 -m pip install --upgrade setuptools wheel pip
+    #     python3 -m venv testvenv
+    #     testvenv/bin/python3 -m pip install --upgrade setuptools wheel pip
+    #     testvenv/bin/python3 -m pip install git+https://github.com/systemd/mkosi.git@v12
 
     - name: Build
       run: |
         MKOSI=$PWD/testvenv/bin/mkosi
-        sudo $MKOSI summary
+        sudo mkosi summary
 
     - name: Build
       run: |
         MKOSI=$PWD/testvenv/bin/mkosi
-        sudo $MKOSI --debug --directory=$PWD
+        sudo mkosi --debug --directory=$PWD
 
     - uses: actions/upload-artifact@v3
       with:
