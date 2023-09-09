@@ -9,24 +9,22 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - name: Install
+    - name: Install mkosi
       run: |
         sudo apt-get update
         python3 -m pip install --upgrade setuptools wheel pip
-
-    - name: Test venv installation
-      run: |
         python3 -m venv testvenv
         testvenv/bin/python3 -m pip install --upgrade setuptools wheel pip
         testvenv/bin/python3 -m pip install git+https://github.com/systemd/mkosi.git@v16
         testvenv/bin/mkosi -h
+        testvenv/bin/mkosi --version
 
     - name: Build
       run: |
         MKOSI=$PWD/testvenv/bin/mkosi
-        $MKOSI --help
+        $MKOSI
 
-    - name: Build
-      run: |
-        MKOSI=$PWD/testvenv/bin/mkosi
-        $MKOSI --version
+    - uses: actions/upload-artifact@v3
+      with:
+        name: my-artifact
+        path: image.raw

@@ -1,0 +1,20 @@
+[Distribution]
+Distribution=fedora
+Release=38
+
+[Output]
+Bootable=yes
+
+[Content]
+Packages=kernel
+         systemd
+         systemd-boot
+         udev
+         util-linux
+         
+[Host]
+QemuHeadless=yes
+
+[Validation]
+Password=
+Autologin=yes
