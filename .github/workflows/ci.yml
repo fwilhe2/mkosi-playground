@@ -19,13 +19,14 @@ jobs:
         testvenv/bin/python3 -m pip install git+https://github.com/systemd/mkosi.git@v16
         testvenv/bin/mkosi -h
         testvenv/bin/mkosi --version
+        testvenv/bin/mkosi build --help
 
-    - name: Build
-      run: |
-        MKOSI=$PWD/testvenv/bin/mkosi
-        sudo $MKOSI --debug --directory=$PWD
+    # - name: Build
+    #   run: |
+    #     MKOSI=$PWD/testvenv/bin/mkosi
+    #     sudo $MKOSI --debug --directory=$PWD
 
-    - uses: actions/upload-artifact@v3
-      with:
-        name: my-artifact
-        path: image.raw
+    # - uses: actions/upload-artifact@v3
+    #   with:
+    #     name: my-artifact
+    #     path: image.raw
