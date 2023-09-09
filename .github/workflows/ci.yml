@@ -8,17 +8,25 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
+
+    - name: Install
+      run: |
+        sudo apt-get update
+        python3 -m pip install --upgrade setuptools wheel pip
+
+    - name: Test venv installation
+      run: |
+        python3 -m venv testvenv
+        testvenv/bin/python3 -m pip install --upgrade setuptools wheel pip
+        testvenv/bin/python3 -m pip install git+https://github.com/systemd/mkosi.git@v16
+        testvenv/bin/mkosi -h
+
     - name: Build
       run: |
-        python3 -m pip install --user git+https://github.com/systemd/mkosi.git@v16
-
-    - run: sudo find / -name mkosi
-
-    - name: Build
-      run: |
-        MKOSI=/home/runner/.local/lib/mkosi
+        MKOSI=$PWD/testvenv/bin/mkosi
         $MKOSI --help
 
     - name: Build
       run: |
+        MKOSI=$PWD/testvenv/bin/mkosi
         $MKOSI --version
