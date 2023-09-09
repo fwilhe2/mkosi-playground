@@ -22,7 +22,7 @@ jobs:
     - name: Build
       run: |
         MKOSI=$PWD/testvenv/bin/mkosi
-        $MKOSI
+        $MKOSI --debug --directory=$PWD
 
     - uses: actions/upload-artifact@v3
       with:
