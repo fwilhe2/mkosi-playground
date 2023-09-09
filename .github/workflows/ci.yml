@@ -12,11 +12,13 @@ jobs:
       run: |
         python3 -m pip install --user git+https://github.com/systemd/mkosi.git@v16
 
-    - name: Build
-      run: |
-        MKOSI=/home/runner/.local/lib/mkosi
-        sudo $MKOSI --help
+    - run: sudo id
 
     - name: Build
       run: |
-        sudo $MKOSI --version
+        MKOSI=/home/runner/.local/lib/mkosi
+        $MKOSI --help
+
+    - name: Build
+      run: |
+        $MKOSI --version
