@@ -1,0 +1,21 @@
+name: CI
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build
+      run: |
+        sudo python3 -m pip install git+https://github.com/systemd/mkosi.git@v16
+
+    - name: Build
+      run: |
+        sudo mkosi --help
+
+    - name: Build
+      run: |
+        sudo mkosi --version
