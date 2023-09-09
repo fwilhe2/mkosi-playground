@@ -9,30 +9,19 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - name: setup-mkosi
+    - name: Setup mkosi
       uses: systemd/mkosi@v16
   
-
-    # - name: Install mkosi
-    #   run: |
-    #     sudo apt-get update
-    #     sudo apt-get install -y bubblewrap nextgen-yum4
-    #     python3 -m pip install --upgrade setuptools wheel pip
-    #     python3 -m venv testvenv
-    #     testvenv/bin/python3 -m pip install --upgrade setuptools wheel pip
-    #     testvenv/bin/python3 -m pip install git+https://github.com/systemd/mkosi.git@v12
-
-    - name: Build
+    - name: Summary
       run: |
-        MKOSI=$PWD/testvenv/bin/mkosi
         sudo mkosi summary
 
-    - name: Build
+    - name: Build Image
       run: |
-        MKOSI=$PWD/testvenv/bin/mkosi
-        sudo mkosi --debug --directory=$PWD
+        sudo mkosi
 
-    - uses: actions/upload-artifact@v3
+    - name: Upload Image
+      uses: actions/upload-artifact@v3
       with:
-        name: my-artifact
+        name: fedora-image
         path: image.raw
