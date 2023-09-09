@@ -10,12 +10,13 @@ jobs:
     - uses: actions/checkout@v3
     - name: Build
       run: |
-        sudo python3 -m pip install git+https://github.com/systemd/mkosi.git@v16
+        python3 -m pip --user install git+https://github.com/systemd/mkosi.git@v16
 
     - name: Build
       run: |
-        sudo mkosi --help
+        MKOSI=/home/runner/.local/lib/mkosi
+        sudo $MKOSI --help
 
     - name: Build
       run: |
-        sudo mkosi --version
+        sudo $MKOSI --version
