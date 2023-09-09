@@ -17,9 +17,6 @@ jobs:
         python3 -m venv testvenv
         testvenv/bin/python3 -m pip install --upgrade setuptools wheel pip
         testvenv/bin/python3 -m pip install git+https://github.com/systemd/mkosi.git@v12
-        testvenv/bin/mkosi -h
-        testvenv/bin/mkosi --version
-        testvenv/bin/mkosi build --help
 
     - name: Build
       run: |
