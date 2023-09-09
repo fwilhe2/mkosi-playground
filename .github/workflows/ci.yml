@@ -10,7 +10,7 @@ jobs:
     - uses: actions/checkout@v3
     - name: Build
       run: |
-        python3 -m pip --user install git+https://github.com/systemd/mkosi.git@v16
+        python3 -m pip install --user git+https://github.com/systemd/mkosi.git@v16
 
     - name: Build
       run: |
