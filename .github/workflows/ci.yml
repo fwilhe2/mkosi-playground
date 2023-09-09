@@ -12,7 +12,7 @@ jobs:
       run: |
         python3 -m pip install --user git+https://github.com/systemd/mkosi.git@v16
 
-    - run: find . -name mkosi
+    - run: find $HOME -name mkosi
 
     - name: Build
       run: |
