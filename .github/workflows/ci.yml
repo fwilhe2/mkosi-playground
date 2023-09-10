@@ -9,8 +9,8 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - name: Install dependencies
-      run: sudo apt-get update && sudo apt-get install -y qemu-system-arm qemu-efi
+    - name: Set up QEMU
+      uses: docker/setup-qemu-action@v2
 
     - name: Setup mkosi
       uses: systemd/mkosi@v16
