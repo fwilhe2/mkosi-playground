@@ -21,7 +21,7 @@ jobs:
 
     - name: Build Image
       run: |
-        sudo mkosi --architecture=x86-64,arm64
+        sudo mkosi --architecture=x86-64 --architecture=arm64
 
     - name: Upload Image
       uses: actions/upload-artifact@v3
