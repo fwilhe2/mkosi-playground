@@ -21,6 +21,9 @@ jobs:
     - name: Setup mkosi
       uses: systemd/mkosi@v16
 
+    - name: Install qemu-utils for qemu-img
+      run: sudo apt-get update && sudo apt-get -y install qemu-utils
+
     - name: Summary
       run: |
         sudo mkosi summary
