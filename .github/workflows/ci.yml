@@ -29,8 +29,11 @@ jobs:
       run: |
         sudo mkosi --architecture=${{ matrix.architecture }}
 
+    - name: Convert Image
+      run: qemu-img convert -f raw -O qcow2 image.raw fedora-image-${{ matrix.architecture }}.qcow2
+
     - name: Upload Image
       uses: actions/upload-artifact@v3
       with:
         name: fedora-image-${{ matrix.architecture }}
-        path: ./
+        path: fedora-image-${{ matrix.architecture }}.qcow2
